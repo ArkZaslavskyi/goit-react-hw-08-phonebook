@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { register } from "redux/auth/operations";
+import { login } from "redux/auth/operations";
 import css from "./LoginForm.module.css";
 
-export const RegisterForm = () => {
+export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -10,7 +10,7 @@ export const RegisterForm = () => {
 
     const form = e.currentTarget;
     dispatch(
-      register({
+      login({
         email: form.elements.email.value,
         password: form.elements.password.value
       })
