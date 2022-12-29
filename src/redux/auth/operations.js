@@ -47,4 +47,12 @@ export const login = createAsyncThunk(
  * headers: Authorization: Bearer token
 */
 
-export const logout = createAsyncThunk('auth/logout');
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    const { data } = await axios.post('/users/logout');
+    console.log(data);
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
