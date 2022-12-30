@@ -3,6 +3,16 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
+// Utility to add JWT
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+// Utility to remove JWT
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
+
 /*
  * Create a new user
 ​ * POST @ /users​/signup
@@ -14,7 +24,8 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/signup', credentials);
-      console.log(data);
+      setAuthHeader(data.token);
+      //
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -33,7 +44,7 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/login', credentials);
-      console.log(data);
+      setAuthHeader(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -49,10 +60,15 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    const { data } = await axios.post('/users/logout');
-    console.log(data);
-    return data;
+    await axios.post('/users/logout');
+    clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+/*
+ * Get information about the current user
+​ * GET @ /users/current
+ * headers: Authorization: Bearer token
+*/
