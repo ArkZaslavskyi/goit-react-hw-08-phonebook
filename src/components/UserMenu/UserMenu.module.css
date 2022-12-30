@@ -1,0 +1,9 @@
+.menuWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menuName {
+    font-weight: 700;
+}

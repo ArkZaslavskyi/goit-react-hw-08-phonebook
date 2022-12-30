@@ -29,7 +29,7 @@ export const LoginForm = () => {
         Password
         <input type="text" name="password" />
       </label>
-      <button type="submit">Register</button>
+      <button type="submit">Log in</button>
     </form>
   );
 };
