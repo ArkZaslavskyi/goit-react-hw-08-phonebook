@@ -41,7 +41,7 @@ const contactsPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    contacts: persistReducer(
+    data: persistReducer(
       contactsPersistConfig,
       combineReducers({ contacts: contactsReducer, filter: filterReducer })
     ),
