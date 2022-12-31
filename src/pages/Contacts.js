@@ -19,7 +19,8 @@ const Contacts = () => {
   return (
     <>
       <ContactForm />
-      {!isLoading && !isError && <ContactList />}
+      {/* {!isLoading "Requesting contacts..." />} */}
+      <ContactList />
     </>
   );
 };
