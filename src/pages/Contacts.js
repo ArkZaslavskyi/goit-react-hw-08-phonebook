@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsError, selectIsLoading } from 'redux/contacts/selectors';
+import { selectIsLoading } from 'redux/contacts/selectors';
 import { getContacts } from 'redux/contacts/operations';
 
 import { ContactForm } from 'components/ContactForm';
@@ -10,7 +10,6 @@ const Contacts = () => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
 
   useEffect(() => {
     dispatch(getContacts());
@@ -19,7 +18,11 @@ const Contacts = () => {
   return (
     <>
       <ContactForm />
-      {/* {!isLoading "Requesting contacts..." />} */}
+      {isLoading && (
+        <div style={{ fontWeight: 700, color: 'red' }}>
+          Requesting contacts...
+        </div>
+      )}
       <ContactList />
     </>
   );
