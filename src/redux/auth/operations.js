@@ -71,4 +71,28 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
  * Get information about the current user
 ​ * GET @ /users/current
  * headers: Authorization: Bearer token
+ *
+ * 1. Забираем токен из стейта через getState()
+ * 2. Если токена нет - выходим
+ * 3. Если токен есть - добавляем его в http-header,
+ *    и выполняем операцию
 */
+
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    // 1. check token from state by getState()
+    const persistedToken = thunkAPI.getState().auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue('there is no user');
+    }
+
+    try {
+      setAuthHeader(persistedToken);
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.messsage);
+    }
+  }
+);
