@@ -1,6 +1,7 @@
 import { MdClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
+import PropTypes from "prop-types";
 import css from "./Contact.module.css";
 
 export const Contact = ({ id, name, number }) => {
@@ -19,4 +20,10 @@ export const Contact = ({ id, name, number }) => {
       </button>
     </li>
   );
+};
+
+Contact.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 };
