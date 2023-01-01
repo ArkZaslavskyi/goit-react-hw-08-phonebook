@@ -13,9 +13,9 @@ export const Filter = () => {
   };
 
   return (
-    <>
+    <form className={css.form}>
       <label className={css.label}>
-        Find contacts by name
+        Find contacts by name:
         <input className={css.input}
             type="text"
             name="filter"
@@ -23,6 +23,6 @@ export const Filter = () => {
             onChange={handleChange}
         />
       </label>
-    </>
+    </form>
   );
 };

@@ -1,7 +1,12 @@
-.label {
-	display: inline-block;
-	width: 75%;
+.form {
+	margin-bottom: 8px;
+	max-width: 480px;
 }
+
+.label {
+	display: flex;
+	flex-direction: column;
+	font-weight: 500;}
 
 .label:not(:first-of-type) {
 	margin-top: 8px;
@@ -9,7 +14,7 @@
 
 .input {
 	display: block;
-	width: 100%;
+	max-width: 100%;
 	padding: 4px;
 	margin-top: 4px;
 }
