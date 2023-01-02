@@ -7,6 +7,10 @@ import { ContactForm } from 'components/ContactForm';
 import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/Filter';
 
+const css = {
+  fontWeight: 700,
+  color: 'red',
+};
 const Contacts = () => {
   const dispatch = useDispatch();
 
@@ -20,11 +24,7 @@ const Contacts = () => {
     <>
       <ContactForm />
       <Filter />
-      {isLoading && (
-        <div style={{ fontWeight: 700, color: 'red' }}>
-          Requesting contacts...
-        </div>
-      )}
+      {isLoading && <div style={css}>Requesting contacts...</div>}
       <ContactList />
     </>
   );
