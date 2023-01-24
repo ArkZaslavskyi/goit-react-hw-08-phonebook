@@ -1,7 +1,7 @@
 import { useEffect, lazy } from "react";
 import { useDispatch } from "react-redux";
 import { refreshUser } from "redux/auth/operations";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./Layout";
 import { PrivateRoute } from "./PrivateRoute";
 import { RestrictedRoute } from "./RestrictedRoute";
@@ -58,6 +58,12 @@ export const App = () => {
                 />
               }
             />
+            
+            <Route
+              path="*"
+              element={<Navigate to="/login" replace />}
+            />
+
           </Route>
         </Routes>
       )

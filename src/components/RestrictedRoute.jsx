@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
  * 
  * Условия:
  * 1. Должен повторять API Route
- * 2. Должне рендерить route
+ * 2. Должен рендерить route
  * 
  */
 
