@@ -10,6 +10,11 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
 };
+
+const handleRejected = (state, action) => {
+  alert('Failed request!');
+};
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -19,12 +24,14 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+    [register.rejected]: handleRejected,
 
     [login.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+    [login.rejected]: handleRejected,
 
     [logout.fulfilled](state) {
       state.user = { name: null, email: null };
