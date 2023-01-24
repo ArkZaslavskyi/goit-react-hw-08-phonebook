@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact } from "redux/contacts/operations";
+import { useContacts } from "hooks";
 import css from "./ContactForm.module.css";
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
+  const { contacts } = useContacts();
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -31,8 +33,11 @@ export const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const form = e.currentTarget;
-    // console.log(form);
+    const normalizeName = name.toLowerCase();
+    if (contacts.some(contact => contact.name.toLowerCase() === normalizeName)) {
+      alert(`"${normalizeName}" is already in contacts.`);
+      return;
+    };
 
     dispatch(addContact({ name, number }));
     resetContactForm();
