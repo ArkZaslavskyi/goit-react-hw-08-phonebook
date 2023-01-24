@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading } from 'redux/contacts/selectors';
+import { useDispatch } from 'react-redux';
 import { getContacts } from 'redux/contacts/operations';
+
+import { useContacts } from 'hooks';
 
 import { ContactForm } from 'components/ContactForm';
 import { ContactList } from 'components/ContactList';
@@ -11,10 +12,11 @@ const css = {
   fontWeight: 700,
   color: 'red',
 };
+
 const Contacts = () => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(selectIsLoading);
+  const { isLoading } = useContacts();
 
   useEffect(() => {
     dispatch(getContacts());
